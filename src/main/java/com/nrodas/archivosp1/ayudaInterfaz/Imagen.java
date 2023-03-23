@@ -4,6 +4,11 @@
  */
 package com.nrodas.archivosp1.ayudaInterfaz;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 
 /**
  *
@@ -11,6 +16,12 @@ package com.nrodas.archivosp1.ayudaInterfaz;
  */
 public class Imagen {
     
+    //Creamos Metodos publicos
+    public Icon setearIconoImagen(JLabel label, String ruta) {
+        ImageIcon imgFondo = new ImageIcon(getClass().getResource(ruta));
+        Icon icono = new ImageIcon(imgFondo.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+        return icono;
+    }
     
     
 }
