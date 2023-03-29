@@ -240,7 +240,10 @@ public class Reporte {
             ResultSet resultado = preSt.executeQuery(); //Se realiza la Query
             while (resultado.next()) { //Valida los resultados disponibles
                 Lista lista = new Lista(null); //Se crea una nueva lista
-                lista.agregarNodo(resultado.getInt(1));
+                if (resultado.getInt(3) == 0) {
+                    resultado.next();
+                }
+                lista.agregarNodo(resultado.getString(1));
                 lista.agregarNodo(resultado.getString(2));
                 lista.agregarNodo(resultado.getInt(3));
                 lista.agregarNodo(resultado.getDouble(4));

@@ -15,7 +15,7 @@ public class Inventario extends javax.swing.JFrame {
 
     private int moveX;
     private int moveY;
-    
+
     public Inventario() {
         initComponents();
         this.setResizable(false);
@@ -107,6 +107,9 @@ public class Inventario extends javax.swing.JFrame {
         jLabelBtnHome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelBtnHome.setText("     Inicio");
         jLabelBtnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBtnHomeMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabelBtnHomeMouseEntered(evt);
             }
@@ -129,6 +132,9 @@ public class Inventario extends javax.swing.JFrame {
         jLabelBtnIP.setForeground(new java.awt.Color(255, 255, 255));
         jLabelBtnIP.setText("     Ing. Productos");
         jLabelBtnIP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBtnIPMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabelBtnIPMouseEntered(evt);
             }
@@ -247,7 +253,7 @@ public class Inventario extends javax.swing.JFrame {
 
     /*
         Metodos relacionados con la barra superior
-    */
+     */
     private void jPanelBarraSupMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelBarraSupMousePressed
         this.moveX = evt.getX();
         this.moveY = evt.getY();
@@ -262,8 +268,8 @@ public class Inventario extends javax.swing.JFrame {
     /*
         Eventos relacionados con los botones cerrar y minimizar
         Desvanecimiento y click
-    */
-    
+     */
+
     private void jLabelBtnMinMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnMinMouseEntered
         this.jPanelBtnMin.setBackground(new Color(240, 240, 240));
     }//GEN-LAST:event_jLabelBtnMinMouseEntered
@@ -292,8 +298,8 @@ public class Inventario extends javax.swing.JFrame {
 
     /*
         Eventos de desvanecimiento de los botones de la barra lateral
-    */
-    
+     */
+
     private void jLabelBtnHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnHomeMouseEntered
         this.jPanelBtnHome.setBackground(new Color(255, 87, 70));
     }//GEN-LAST:event_jLabelBtnHomeMouseEntered
@@ -321,6 +327,49 @@ public class Inventario extends javax.swing.JFrame {
     private void jLabelBtnCSMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnCSMouseExited
         this.jPanelBtnCS.setBackground(new Color(255, 55, 39));
     }//GEN-LAST:event_jLabelBtnCSMouseExited
+
+    /*
+        Eventos con los click en los menus de la barra lateral
+     */
+
+    private void jLabelBtnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnHomeMouseClicked
+        if (!this.jLabelBtnIP.isEnabled()) {
+            this.jPanelBtnIP.setBackground(new Color(255, 55, 39));
+            this.jLabelBtnIP.setEnabled(true);
+            this.jLabelIIP.setEnabled(true);
+        }
+        this.jLabelBtnHome.setEnabled(false);
+        this.jLabelIHome.setEnabled(false);
+        Inicio_Pnl pnl = new Inicio_Pnl();
+        this.jPanelCambiante.removeAll();
+        this.jPanelCambiante.add(pnl);
+        this.jPanelCambiante.repaint();
+        this.jPanelCambiante.revalidate();
+    }//GEN-LAST:event_jLabelBtnHomeMouseClicked
+
+    private void jLabelBtnIPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnIPMouseClicked
+        if (!this.jLabelBtnHome.isEnabled()) {
+            this.jPanelBtnHome.setBackground(new Color(255, 55, 39));
+            this.jLabelBtnHome.setEnabled(true);
+            this.jLabelIHome.setEnabled(true);
+        }
+        this.jLabelBtnIP.setEnabled(false);
+        this.jLabelIIP.setEnabled(false);
+        Inv_Pnl1 pnl = new Inv_Pnl1();
+        this.jPanelCambiante.removeAll();
+        this.jPanelCambiante.add(pnl);
+        this.jPanelCambiante.repaint();
+        this.jPanelCambiante.revalidate();
+    }//GEN-LAST:event_jLabelBtnIPMouseClicked
+
+    /*Metodo que repinta la pestaña*/
+    public void repintarPest() {
+        Inv_Pnl1 pnl = new Inv_Pnl1();
+        this.jPanelCambiante.removeAll();
+        this.jPanelCambiante.add(pnl);
+        this.jPanelCambiante.repaint();
+        this.jPanelCambiante.revalidate();
+    }
 
     /**
      * @param args the command line arguments

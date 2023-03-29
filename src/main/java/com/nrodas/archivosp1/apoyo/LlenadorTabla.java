@@ -75,4 +75,21 @@ public class LlenadorTabla {
         }
     }
     
+    public static void llenarTablaInventario(JTable tabla, Matriz matriz) {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        int tamanio = matriz.getPrimera().hallarTamanio();
+        Lista temp = matriz.getPrimera();
+        while (temp != null) {
+            Object[] objeto = new Object[tamanio];
+            Nodo tempo = temp.getPrimero();
+            int indice = 0;
+            while (tempo != null) {                
+                objeto[indice] = "  " + tempo.getContenido();
+                indice++;
+                tempo = tempo.getSiguiente();
+            }
+            modelo.addRow(objeto);
+            temp = temp.getSiguiente();
+        }
+    }
 }
