@@ -8,6 +8,7 @@ import com.nrodas.archivosp1.conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -78,6 +79,40 @@ public class Producto {
             System.err.println(e.getMessage()); //Muestra un error por si lo hubiera
         }
         return correctInsert; //Devuelve si la operacion se realizo con exito
+    }
+    
+    //Metodo para eliminar un producto
+    public boolean eliminarProducto(String codigoProducto, int noInventario) { //Metodo que elimina un producto del inventario
+        boolean fueEliminado = false; //Bandera que indica si fue eliminado con exito
+        String consulta = "DELETE FROM ControlTienda.Producto WHERE codigoPdt = ? AND inventario = ?"; //Se formula la Query
+        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) { //Se prepara la consulta
+            //Se sustituyen los datos
+            preSt.setString(1, codigoProducto);
+            preSt.setInt(2, noInventario);
+            if (preSt.executeUpdate() > 0) { //Valida que se haya realizado correctamente
+                fueEliminado = true;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage()); //Muestra un mensaje si existe un error
+        }
+        return fueEliminado; //Retorna el valor de la bandera
+    }
+    
+    //Metodo para actualizar el stock de un producto
+    public boolean actualizarStock(String codigoProducto, int noInventario, int cantidadActual) {
+        boolean stockActualizado = false; //Bandera que indica que la operacion fue realizada con exito
+        String consulta = "UPDATE ControlTienda.Producto SET cantidad = ? WHERE codigoPdt = ? AND inventario = ?"; //Se formula la Query
+        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) { //Se preapra la llamadda
+            preSt.setInt(1, cantidadActual); //Se sustituyen los datos
+            preSt.setString(2, codigoProducto);
+            preSt.setInt(3, noInventario);
+            if (preSt.executeUpdate() > 0) { //Se actualiza el stock
+                stockActualizado = true; //Se cambia el valor a true
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage()); //Muestra un mensaje de error por si hubiera
+        }
+        return stockActualizado; //Se retorna el valor de exito de la operacion
     }
     
     
