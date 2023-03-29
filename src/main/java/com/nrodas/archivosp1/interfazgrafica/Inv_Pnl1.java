@@ -345,7 +345,7 @@ public class Inv_Pnl1 extends javax.swing.JPanel {
                 Producto pdt = new Producto(producto, inventario, this.prt.getDescripcionProducto(), cantidad, this.prt.getPrecioUnitario());
                 pdt.insertarProducto();
                 this.prt.actualizarStock(this.prt.getCodigoProducto(), this.prt.getInventario(), this.prt.getCantidad() - cantidad);
-                ShowMsg msg = new ShowMsg(frame, true, "El producto ha sido agregado y removido de la instalacion proveedora");
+                ShowMsg msg = new ShowMsg(frame, true, "El producto ha sido agregado y se han removido las existencias adquiridas de la instalacion proveedora");
             }
             Inventario invent = (Inventario)SwingUtilities.getWindowAncestor(this);
             invent.repintarPest();

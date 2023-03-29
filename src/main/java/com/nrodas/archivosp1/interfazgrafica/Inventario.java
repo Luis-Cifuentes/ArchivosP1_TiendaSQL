@@ -85,6 +85,9 @@ public class Inventario extends javax.swing.JFrame {
         jLabelBtnCS.setForeground(new java.awt.Color(255, 255, 255));
         jLabelBtnCS.setText("     Cerrar Seción");
         jLabelBtnCS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBtnCSMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabelBtnCSMouseEntered(evt);
             }
@@ -361,6 +364,13 @@ public class Inventario extends javax.swing.JFrame {
         this.jPanelCambiante.repaint();
         this.jPanelCambiante.revalidate();
     }//GEN-LAST:event_jLabelBtnIPMouseClicked
+
+    /*Metodo relacinado con el cierre de secion*/
+    private void jLabelBtnCSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnCSMouseClicked
+        Login login = new Login();
+        EmpLogueado.reiniciarValores();
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabelBtnCSMouseClicked
 
     /*Metodo que repinta la pestaña*/
     public void repintarPest() {
