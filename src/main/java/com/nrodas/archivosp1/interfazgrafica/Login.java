@@ -5,9 +5,11 @@
 package com.nrodas.archivosp1.interfazgrafica;
 
 import com.nrodas.archivosp1.apoyo.Contrasenia;
+import com.nrodas.archivosp1.conexion.Conexion;
 import com.nrodas.archivosp1.entidades.Empleado;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,14 +21,14 @@ public class Login extends javax.swing.JFrame {
     private final Empleado emp;
     private int moveX;
     private int moveY;
-    
+
     public Login() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(getClass().getResource("/Icono-App.png")).getImage());
         emp = new Empleado();
-        this.setVisible(true);     
+        this.setVisible(true);
     }
 
     /**
@@ -249,7 +251,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /*Metodos que le dan el estilo de cambio de color a los botones cuando el maouse entra y sale de ellos*/
-    
+
     private void jLabelBtnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnMinimizarMouseEntered
         this.jPanelBtnMinimizar.setBackground(new Color(240, 240, 240));
     }//GEN-LAST:event_jLabelBtnMinimizarMouseEntered
@@ -277,7 +279,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelBtnIngresarMouseExited
 
     /*Metodos relacionados con los jTextFields*/
-    
+
     private void jTextFieldUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioMousePressed
         // TODO add your handling code here:
         if (this.jTextFieldUsuario.getText().equals("Ingresa tu ID")) {
@@ -310,24 +312,25 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldPasswordMousePressed
 
     /*Metodos referentes a los llenados de los JTextFields*/
-    
+
     private void jTextFieldUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioKeyTyped
         if (this.jTextFieldUsuario.getText().length() > 9) {
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
         }
-        if (!(evt.getKeyChar() >= 48 && evt.getKeyChar() <=57)) {
+        if (!(evt.getKeyChar() >= 48 && evt.getKeyChar() <= 57)) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldUsuarioKeyTyped
 
     /*Metodos relacionado con los clicks de los botones*/
-    
+
     private void jLabelBtnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnMinimizarMouseClicked
         this.setExtendedState(Login.ICONIFIED);
     }//GEN-LAST:event_jLabelBtnMinimizarMouseClicked
 
     private void jLabelBtnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnCerrarMouseClicked
+        Conexion.cerrarConexionDB();
         System.exit(0);
     }//GEN-LAST:event_jLabelBtnCerrarMouseClicked
 
@@ -342,15 +345,17 @@ public class Login extends javax.swing.JFrame {
                         VentaR vnd = new VentaR();
                         this.setVisible(false);
                         break;
-                    case 4:
-                        Administracion admin = new Administracion();
-                        this.setVisible(false);
-                        break;
                     case 2:
                         Inventario inv = new Inventario();
                         this.setVisible(false);
                         break;
-                    default:
+                    case 3:
+                        Bodega bodega = new Bodega();
+                        this.setVisible(false);
+                        break;
+                    case 4:
+                        Administracion admin = new Administracion();
+                        this.setVisible(false);
                         break;
                 }
             } else {
@@ -360,7 +365,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelBtnIngresarMouseClicked
 
     /*Metodos relacionados con el posicion final de la ventana al arrastrar el frame*/
-    
+
     private void jPanelBarraSuperiorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelBarraSuperiorMousePressed
         this.moveX = evt.getX();
         this.moveY = evt.getY();
@@ -372,10 +377,6 @@ public class Login extends javax.swing.JFrame {
         this.setLocation(posicionFinalX - this.moveX, posicionFinalY - this.moveY);
     }//GEN-LAST:event_jPanelBarraSuperiorMouseDragged
 
-    
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelBtnCerrar;

@@ -7,6 +7,8 @@ package com.nrodas.archivosp1.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +29,17 @@ public class Conexion {
         } catch (SQLException e) {
             System.err.println("Error al intentar conectar con al base de datos ->" + e.getMessage());
             return false;
+        }
+    }
+    
+    //Crea el metodo que cierra la conexion
+    public static void cerrarConexionDB(){
+        if (conexionDB != null) {
+            try {
+                conexionDB.close();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
         }
     }
     

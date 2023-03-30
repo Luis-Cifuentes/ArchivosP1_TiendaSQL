@@ -438,7 +438,7 @@ public class Administracion extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         Login login = new Login();
         EmpLogueado.reiniciarValores();
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     public void repintarEmpleado() {

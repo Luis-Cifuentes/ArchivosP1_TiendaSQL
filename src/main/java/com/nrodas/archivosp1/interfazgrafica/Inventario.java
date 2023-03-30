@@ -4,6 +4,7 @@
  */
 package com.nrodas.archivosp1.interfazgrafica;
 
+import com.nrodas.archivosp1.conexion.Conexion;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
@@ -296,6 +297,7 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelBtnCerrarMouseExited
 
     private void jLabelBtnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnCerrarMouseClicked
+        Conexion.cerrarConexionDB();
         System.exit(0);
     }//GEN-LAST:event_jLabelBtnCerrarMouseClicked
 
@@ -369,7 +371,7 @@ public class Inventario extends javax.swing.JFrame {
     private void jLabelBtnCSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnCSMouseClicked
         Login login = new Login();
         EmpLogueado.reiniciarValores();
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabelBtnCSMouseClicked
 
     /*Metodo que repinta la pestaña*/

@@ -115,6 +115,24 @@ public class Producto {
         return stockActualizado; //Se retorna el valor de exito de la operacion
     }
     
+    public boolean actualizarProducto(String codigoPdt, int inventario, String descrip, int newCantidad, double newPrecio) {
+        boolean productoMod = false;
+        String consulta = "UPDATE ControlTienda.Producto SET descripcion = ?, cantidad = ?, precioUnitario = ? WHERE codigoPdt = ? AND inventario = ?";
+        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) {
+            preSt.setString(1, descrip);
+            preSt.setInt(2, newCantidad);
+            preSt.setDouble(3, newPrecio);
+            preSt.setString(4, codigoPdt);
+            preSt.setInt(5, inventario);
+            if (preSt.executeUpdate() > 0) {
+                productoMod = true;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return productoMod;
+    }
+    
     
 
     /*Getters y Setters*/

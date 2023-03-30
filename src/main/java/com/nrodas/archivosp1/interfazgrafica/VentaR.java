@@ -4,7 +4,9 @@
  */
 package com.nrodas.archivosp1.interfazgrafica;
 
+import com.nrodas.archivosp1.conexion.Conexion;
 import java.awt.Color;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -22,13 +24,6 @@ public class VentaR extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(getClass().getResource("/Icono-App.png")).getImage());
-        Inicio_Pnl pnl = new Inicio_Pnl();
-        this.jPanelCambiante.removeAll();
-        this.jPanelCambiante.add(pnl);
-        this.jPanelCambiante.repaint();
-        this.jPanelCambiante.revalidate();
-        this.jPanelHome.setBackground(new Color(85, 255, 92));
-        this.jPanelHome.setEnabled(false);
         this.setVisible(true);
     }
 
@@ -356,6 +351,7 @@ public class VentaR extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelBtnMinimizarMouseClicked
 
     private void jLabelBtnCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnCerrarMouseClicked
+        Conexion.cerrarConexionDB();
         System.exit(0);
     }//GEN-LAST:event_jLabelBtnCerrarMouseClicked
 
@@ -424,7 +420,7 @@ public class VentaR extends javax.swing.JFrame {
         // TODO add your handling code here:
         EmpLogueado.reiniciarValores();
         Login login = new Login();
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabelBtnCerrarSecionMouseClicked
 
     public void repintarPanelVenta() {

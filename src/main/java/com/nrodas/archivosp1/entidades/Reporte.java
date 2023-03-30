@@ -240,7 +240,7 @@ public class Reporte {
             ResultSet resultado = preSt.executeQuery(); //Se realiza la Query
             while (resultado.next()) { //Valida los resultados disponibles
                 Lista lista = new Lista(null); //Se crea una nueva lista
-                if (resultado.getInt(3) == 0) {
+                if (resultado.getInt(3) == 0 && inventario != 1) {
                     resultado.next();
                 }
                 lista.agregarNodo(resultado.getString(1));
