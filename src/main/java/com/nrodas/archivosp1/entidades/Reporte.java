@@ -11,6 +11,7 @@ import com.nrodas.archivosp1.listas.Matriz;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +42,7 @@ public class Reporte {
             } 
             resultado.close(); //Cierra el resultset
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra un error por si lo hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error por si lo hubiera
         }
         //return arreglo; //Retorna el arreglo
     }
@@ -64,7 +65,7 @@ public class Reporte {
             } 
             resultado.close(); //Cierra el resultset
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra un error por si lo hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error por si lo hubiera
         }
     }
     
@@ -87,7 +88,7 @@ public class Reporte {
             } 
             resultado.close(); //Se cierra el resultset para optimizar la aplicacion
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra un error por si lo hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error por si lo hubiera
         }
     }
     
@@ -112,7 +113,7 @@ public class Reporte {
             } 
             resultado.close(); //Se cierra el resultset para optimizar la aplicaicon
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra un error por si lo hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error por si lo hubiera
         }
     }
     
@@ -136,7 +137,7 @@ public class Reporte {
             }
             resultado.close(); //Se cierra el result para oprimizar      
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Imprime el error en consola
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Imprime el error en consola
         }
     }
     
@@ -160,7 +161,7 @@ public class Reporte {
             }
             resultado.close(); //Se cierra el resultado para optimizar       
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage());//Muestra el error
         }
     }
     
@@ -184,7 +185,7 @@ public class Reporte {
             }
             resultado.close(); //Se cierra el resultado para optimizar       
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Se muestra un error en la consola
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Se muestra un error en la consola
         }
     }
     
@@ -205,7 +206,7 @@ public class Reporte {
             }
             resultado.close(); //Se cierra el resultset
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Se muestra un error por si lo hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Se muestra un error por si lo hubiera
         }
     }
     
@@ -226,7 +227,7 @@ public class Reporte {
             }
             resultado.close(); //Se cierra el resultset
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Se muestra un error por si lo hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Se muestra un error por si lo hubiera
         }
     }
     
@@ -251,7 +252,7 @@ public class Reporte {
             }
             resultado.close(); //Se cierra el resultado
         } catch (Exception e) {
-            System.err.println(e.getMessage()); //Se imprime por si hubiera un error
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Se imprime por si hubiera un error
         }
     }
 

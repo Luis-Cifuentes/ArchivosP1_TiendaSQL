@@ -23,6 +23,7 @@ public class Admin_Pnl1 extends javax.swing.JPanel {
         reporte = new Reporte();
         this.jPanelMuestra.setVisible(false);
         this.jComboBoxSucursal.setVisible(false);
+        this.setSize(980, 650);
     }
 
     /**

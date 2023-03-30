@@ -23,6 +23,7 @@ public class Admin_Pnl2 extends javax.swing.JPanel {
     public Admin_Pnl2() {
         initComponents();
         emp = new Empleado();
+        this.setSize(980, 650);
     }
 
     /**

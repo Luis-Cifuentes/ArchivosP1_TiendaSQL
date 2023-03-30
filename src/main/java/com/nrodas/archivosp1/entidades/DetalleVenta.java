@@ -7,6 +7,7 @@ package com.nrodas.archivosp1.entidades;
 import com.nrodas.archivosp1.conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,7 +56,7 @@ public class DetalleVenta {
                 detalleAgregado = true;
             }  
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage()); //Muestra el mensaje de error
         }
         return detalleAgregado;
     }

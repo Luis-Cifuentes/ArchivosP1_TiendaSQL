@@ -8,6 +8,7 @@ import com.nrodas.archivosp1.conexion.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +46,8 @@ public class Cliente {
                 correctUpdate = true;
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Imprime un mensaje en caso de que no sea asi
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            //Imprime un mensaje en caso de que no sea asi
         }
         return correctUpdate; //Retorna el valor
     }
@@ -63,7 +65,8 @@ public class Cliente {
                 correctInsert = true; //Si se inserto correctamente se setea a true
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra si hay un error
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            //Muestra si hay un error
         }
         return correctInsert; //Devuelve si la insercion fue correcta
     }
@@ -85,7 +88,8 @@ public class Cliente {
             }
             resultado.close(); //Se cierra para mejor optimizacion 
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra si es que hay un error
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            //Muestra si es que hay un error
         }
         return clienteEncontrado; //Devuelve si la operacion fue exitosa
     }

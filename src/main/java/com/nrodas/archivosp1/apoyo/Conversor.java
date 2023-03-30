@@ -15,6 +15,12 @@ import javax.swing.JTable;
 public class Conversor {
     
     //Se crea un metodo statico que devuelve el numero de inventario con respecto al nombre del inmueble
+
+    /**
+     *
+     * @param nombreSucursal
+     * @return
+     */
     public static int determinarSucursal(String nombreSucursal) {
         int inventario = 0;
         String sucursalName = nombreSucursal.trim();
@@ -31,6 +37,12 @@ public class Conversor {
     }
     
     //Metodo que determina el nombre de la sucursal con el id del Inventario
+
+    /**
+     *
+     * @param inventario
+     * @return
+     */
     public static String determinarNombreSucursalInv(int inventario) {
         String sucursal = "";
         if (inventario == 1) {
@@ -46,6 +58,12 @@ public class Conversor {
     }
    
     //Metodo que determina el nombre de la sucursal con el id
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public static String determinarNombreSucursal(int id) {
         if (id == 3) {
             return "Sucursal Central";
@@ -58,6 +76,12 @@ public class Conversor {
     }
     
     //Metodo que regresa el pocertaje de descuento
+
+    /**
+     *
+     * @param totalAnterior
+     * @return
+     */
     public static double retornarDescuento(double totalAnterior) {
         if (totalAnterior < 1000) {
             return 0.00;
@@ -71,6 +95,13 @@ public class Conversor {
     }
     
     //Metodo que retorna el total
+
+    /**
+     *
+     * @param tabla
+     * @param desc
+     * @return
+     */
     public static double calcularTotal(JTable tabla, String desc) {
         int columna = 3;
         double total = 0.00;
@@ -83,6 +114,14 @@ public class Conversor {
     }
     
     //Metodo que inserta los detalles de venta
+
+    /**
+     *
+     * @param tabla
+     * @param idVenta
+     * @param inventario
+     * @return
+     */
     public static boolean insertarDetalles(JTable tabla, int idVenta, int inventario) {
         boolean operacionExitosa = true;
         for (int i = 0; i < tabla.getRowCount(); i++) {
@@ -90,8 +129,12 @@ public class Conversor {
             String.valueOf(tabla.getValueAt(i, 1)).trim(), Integer.valueOf(String.valueOf(tabla.getValueAt(i, 2)).trim()), 
             Double.valueOf(String.valueOf(tabla.getValueAt(i, 3)).trim()));
             dtl.agregarDtlVenta();
+            Producto product = new Producto();
+            product.buscarProducto(dtl.getCodigoProducto(), dtl.getInventario());
+            product.actualizarStock(dtl.getCodigoProducto(), dtl.getInventario(), product.getCantidad() - dtl.getCantidadProducto());
         }
         return operacionExitosa;
     }
-            
+         
+    
 }

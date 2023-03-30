@@ -56,7 +56,7 @@ public class Producto {
             }
             resultado.close(); //se cierra el resultado
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Se imprime el error
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Se imprime el error
         }
         return productoEncontrado; //Se retorna el valor
     }
@@ -76,7 +76,7 @@ public class Producto {
                 correctInsert = true; //Si setea a true si fue realizada con exito
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra un error por si lo hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error por si lo hubiera
         }
         return correctInsert; //Devuelve si la operacion se realizo con exito
     }
@@ -110,27 +110,28 @@ public class Producto {
                 stockActualizado = true; //Se cambia el valor a true
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra un mensaje de error por si hubiera
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un mensaje de error por si hubiera
         }
         return stockActualizado; //Se retorna el valor de exito de la operacion
     }
     
     public boolean actualizarProducto(String codigoPdt, int inventario, String descrip, int newCantidad, double newPrecio) {
-        boolean productoMod = false;
+        boolean productoMod = false; //Bandera que indica si se logro con exito
+        //Se crea una query que permita actualizar los datos de un producto
         String consulta = "UPDATE ControlTienda.Producto SET descripcion = ?, cantidad = ?, precioUnitario = ? WHERE codigoPdt = ? AND inventario = ?";
-        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) {
-            preSt.setString(1, descrip);
+        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) { //Se prepara la llamada
+            preSt.setString(1, descrip); //Se sustituyen valores
             preSt.setInt(2, newCantidad);
             preSt.setDouble(3, newPrecio);
             preSt.setString(4, codigoPdt);
             preSt.setInt(5, inventario);
-            if (preSt.executeUpdate() > 0) {
+            if (preSt.executeUpdate() > 0) { //Vadlida que se haya realizado con exito
                 productoMod = true;
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage());//Muestra el error
         }
-        return productoMod;
+        return productoMod; //Retorna el resultado de la operacion
     }
     
     

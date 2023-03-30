@@ -22,15 +22,16 @@ public class Matriz {
     
     /*Metodo para agregar una nueva lista*/
     public void agregarNuevaLista(Lista lista) {
-        if (this.primera == null) {
-            this.ultima = lista;
-            this.primera = this.ultima;
+        if (this.primera == null) { //Si la primer lista es nula
+            this.ultima = lista; //La ultima lista apuntara a una lista
+            this.primera = this.ultima; //La primera apuntata a la ultima
         } else {
-            this.ultima.setSiguiente(lista);
-            this.ultima = lista;
+            this.ultima.setSiguiente(lista); //La ultima setea su siguiente a otra lista
+            this.ultima = lista; //La ultima ahora apunta a la nueva lista
         }
     }
 
+    /*Getters y Setters*/
     public Lista getPrimera() {
         return primera;
     }

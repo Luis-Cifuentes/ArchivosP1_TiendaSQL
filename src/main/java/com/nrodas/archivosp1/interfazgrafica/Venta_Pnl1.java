@@ -36,11 +36,12 @@ public class Venta_Pnl1 extends javax.swing.JPanel {
 
     public Venta_Pnl1() {
         initComponents();
+        this.setSize(980, 650);
         date = new Date();
         this.cliente = null;
         this.venta = null;
         this.product = null;
-        this.frame = (JFrame) SwingUtilities.getWindowAncestor(this); 
+        this.frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
         this.jLabelFecha.setText(this.jLabelFecha.getText() + dateformat.format(date));
         this.jLabelSucursal.setText(Conversor.determinarNombreSucursal(EmpLogueado.empleadoLogueado.getSucursal()));
@@ -694,7 +695,7 @@ public class Venta_Pnl1 extends javax.swing.JPanel {
                     this.jSpinnerCantidad.setEnabled(true);
                     this.jLabelAgregarCompra.setEnabled(true);
                 } else {
-                    this.msg = new ShowMsg(this.frame, true, "Alguio salio mal en la venta");
+                    this.msg = new ShowMsg(this.frame, true, "Ya no tenemos existencias de este producto por el momento");
                 }
             }
         }
@@ -702,25 +703,31 @@ public class Venta_Pnl1 extends javax.swing.JPanel {
 
     private void jLabelAgregarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAgregarCompraMouseClicked
         if (this.jLabelAgregarCompra.isEnabled()) {
-            if (this.product.actualizarStock(this.product.getCodigoProducto(), this.product.getInventario(), this.product.getCantidad() - Integer.valueOf(this.jSpinnerCantidad.getValue() + ""))) {
+            String codigoPDTA = this.product.getCodigoProducto();
+            int cantidadPDTA = this.product.getCantidad();
+            int cantidad = (Integer) this.jSpinnerCantidad.getValue();
+            int existe = LlenadorTabla.verificarCompra(jTableDetalle, codigoPDTA, cantidadPDTA, cantidad);
+            if (existe == 0) {
                 Lista lista = new Lista(null);
                 lista.agregarNodo(this.jTextFieldCodigoPdt.getText());
                 lista.agregarNodo(this.product.getDescripcionProducto());
                 lista.agregarNodo(this.jSpinnerCantidad.getValue());
                 lista.agregarNodo(this.product.getPrecioUnitario() * Double.valueOf(this.jSpinnerCantidad.getValue() + ""));
                 LlenadorTabla.llenarTabla(jTableDetalle, lista);
-                this.jLabelAgregarCompra.setEnabled(false);
-                this.jSpinnerCantidad.setValue(1);
-                this.jSpinnerCantidad.setEnabled(false);
-                double total = Conversor.calcularTotal(jTableDetalle, this.JLabelDecDesc.getText());
-                this.jTextFieldTotal.setText(String.valueOf(total));
-                this.venta.setTotal(total);
-                if (!this.jLabelBtnGuardar.isEnabled()) {
-                    this.jLabelBtnGuardar.setEnabled(true);
-                }
-            } else {
-                this.msg = new ShowMsg(this.frame, true, "Hubo un error al actualizar el stock");
+
+            } else if (existe == 2) {
+                this.msg = new ShowMsg(this.frame, true, "La cantidad que deseas comprar supera al stock en esta tienda");
             }
+            this.jLabelAgregarCompra.setEnabled(false);
+            this.jSpinnerCantidad.setValue(1);
+            this.jSpinnerCantidad.setEnabled(false);
+            double total = Conversor.calcularTotal(jTableDetalle, this.JLabelDecDesc.getText());
+            this.jTextFieldTotal.setText(String.valueOf(total));
+            this.venta.setTotal(total);
+            if (!this.jLabelBtnGuardar.isEnabled()) {
+                this.jLabelBtnGuardar.setEnabled(true);
+            }
+
         }
     }//GEN-LAST:event_jLabelAgregarCompraMouseClicked
 
@@ -729,7 +736,7 @@ public class Venta_Pnl1 extends javax.swing.JPanel {
             if (this.venta.insertarCompra()) { //Valida si la compra fue realizada con exito
                 Conversor.insertarDetalles(jTableDetalle, this.venta.buscarUltimaInsercion(), Conversor.determinarSucursal(this.jLabelSucursal.getText()));
                 VentaR pnl = (VentaR) SwingUtilities.getWindowAncestor(this); //SE vuelve a actualizar el panel
-                pnl.repintarPanelVenta(); 
+                pnl.repintarPanelVenta();
             } else {
                 this.msg = new ShowMsg(this.frame, true, "Alguio salio mal en la venta");
             }

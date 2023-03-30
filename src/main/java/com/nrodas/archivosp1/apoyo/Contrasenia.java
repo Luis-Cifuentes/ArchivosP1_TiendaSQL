@@ -18,6 +18,12 @@ public class Contrasenia {
     /*Atributos*/
     
     //Funciones para hashearla
+
+    /**
+     *
+     * @param contrasenia
+     * @return
+     */
     public static String hashearContrasenia(String contrasenia) {
         String passwrd = "";
         try {

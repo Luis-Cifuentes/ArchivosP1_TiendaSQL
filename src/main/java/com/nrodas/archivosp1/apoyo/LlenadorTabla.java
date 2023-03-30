@@ -92,4 +92,22 @@ public class LlenadorTabla {
             temp = temp.getSiguiente();
         }
     }
+    
+    //Metodo que verifica si un producto ya esta en la factura
+    public static int verificarCompra(JTable table, String codigoPdt, int cantidadPdt, int cantidad){
+        int existe = 0;
+        int filas = table.getRowCount();
+        for (int i = 0; i < filas; i++) {
+            if (codigoPdt.equals(String.valueOf(table.getValueAt(i, 0)).trim())) {
+                int newcantidad = Integer.valueOf(String.valueOf(table.getValueAt(i, 2)).trim()) + cantidad;
+                if (newcantidad <= cantidadPdt) {
+                    table.setValueAt(" " + newcantidad, i, 2);
+                    existe = 1;
+                } else {
+                    existe = 2;
+                }
+            }
+        }
+        return existe;
+    }
 }

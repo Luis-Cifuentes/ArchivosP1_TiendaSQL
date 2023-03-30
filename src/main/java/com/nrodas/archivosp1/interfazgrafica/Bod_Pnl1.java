@@ -25,6 +25,7 @@ public class Bod_Pnl1 extends javax.swing.JPanel {
         LlenadorTabla.cambiarEncabezado(this.jTablePdtBodega, new String[]{"Codigo Producto", "Descripcion", "Cantidad", "Precio Unitario"});
         reporte.retornarProductosInventario(1);
         LlenadorTabla.llenarTablaInventario(this.jTablePdtBodega, reporte.getLb());
+        this.setSize(980, 650);
     }
 
     /**

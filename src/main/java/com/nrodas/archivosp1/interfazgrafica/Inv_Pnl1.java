@@ -30,6 +30,7 @@ public class Inv_Pnl1 extends javax.swing.JPanel {
         String suc = Conversor.determinarNombreSucursal(EmpLogueado.empleadoLogueado.getSucursal());
         this.jLabelSucursal.setText(suc);
         this.jComboBoxInstalacion.removeItem(suc);
+        this.setSize(980, 650);
         this.jPanelFondoTabla.setVisible(false);
     }
 

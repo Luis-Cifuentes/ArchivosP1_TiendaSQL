@@ -24,27 +24,28 @@ public class Lista {
     
     /*Metodo para expandir la matriz*/
     public void agregarNodo(Object objeto) {
-        if (this.primero == null) {
-            this.ultimo = new Nodo(null, objeto);
-            this.primero = this.ultimo;
+        if (this.primero == null) { //Si el primer nodo es nulo
+            this.ultimo = new Nodo(null, objeto); //El ultimo sera un nuevo nodo
+            this.primero = this.ultimo; //El primero apuntara al ultimo
         } else {
-            Nodo nuevo = new Nodo(null, objeto);
-            this.ultimo.setSiguiente(nuevo);
-            this.ultimo = nuevo;
+            Nodo nuevo = new Nodo(null, objeto); //Se crea un nuevo nodo
+            this.ultimo.setSiguiente(nuevo); //El siguiente del ultimo sera este nuevo nodo
+            this.ultimo = nuevo; //El ultimo ahora sea este nuevo nodo
         }
     }
     
     //Metodo para hallar su tamanio
     public int hallarTamanio() {
-        int tamanio = 0;
-        Nodo temp = this.primero;
-        while (temp != null) {            
+        int tamanio = 0; //Se inicializa una variable tamanio
+        Nodo temp = this.primero; //Se crea un nodo temporal
+        while (temp != null) { //Se recorre la lista dependiendo sus nodos
             temp = temp.getSiguiente();
-            tamanio++;
+            tamanio++; //Incrementa el tamanio en 1
         }
-        return tamanio;
+        return tamanio; //Retorna el tamanio
     }
 
+    /*Getters y Setters*/
     public Nodo getPrimero() {
         return primero;
     }

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,8 +62,7 @@ public class Venta {
                 insercionCorrecta = true; //La operacion es exitosa
             }
         } catch (SQLException e) {
-            
-            System.err.println(e.getMessage()); //Muestra un error
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error
         }
         return insercionCorrecta; //Retorna el resultado de la expresion
     }
@@ -80,25 +80,25 @@ public class Venta {
             }
             resultado.close(); //Se cierra para evitar problemas de optimizacion
         } catch (SQLException e) {
-            System.err.println(e.getMessage()); //Muestra un error por si lo hay
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error por si lo hay
         }
         return totalAnterior; //Retorna el valor
     }
     
     //Metodo que obtiene el id de factura mas alto
     public int buscarUltimaInsercion() {
-        int idMax = 0;
-        String consulta = "SELECT MAX(idVenta) FROM ControlTienda.Venta";
-        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) {
-            ResultSet resultado = preSt.executeQuery();
-            if (resultado.next()) {
-                idMax = resultado.getInt(1);
+        int idMax = 0; //Id de la ultima venta
+        String consulta = "SELECT MAX(idVenta) FROM ControlTienda.Venta"; //Query que selecciona el ID de la ultima venta
+        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) { //Se realiza la consulta
+            ResultSet resultado = preSt.executeQuery();  //Se obtiene el id
+            if (resultado.next()) { //Valida que la operacion resulto con exito
+                idMax = resultado.getInt(1); //Se guarda el ultimo id de la venta
             }
-            resultado.close();
+            resultado.close(); //Se cierra el close
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra un error por is lo hubiera
         }
-        return idMax;
+        return idMax; //Se retorna el ultimo id de la venta
     }
     
     //Getters y Setters

@@ -21,6 +21,7 @@ public class Venta_Pnl2 extends javax.swing.JPanel {
     
     public Venta_Pnl2() {
         initComponents();
+        this.setSize(980, 650);
         this.cliente = null;
         this.jPanelUpdate.setVisible(false);
     }

@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,7 +57,8 @@ public class Empleado {
             }
             resultado.close(); //Se cierra el result-set para proteger la memoria
         } catch (SQLException e) {
-            System.out.println("Ocurrio un Problema: " + e.getMessage()); //Muestra el error que ocurre del porque no se pudo ejecutar la instrccuion
+            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage());
+            //Muestra el error que ocurre del porque no se pudo ejecutar la instrccuion
         }
         return banderaCorrecta; //Se retorna el valor de la bandera
     }
@@ -74,7 +76,7 @@ public class Empleado {
              preSt.executeUpdate(); //Se ejecuta la consulta
              banderaAniadido = true; //Tira afirmativo si fue aniadido
          } catch (SQLException e) {
-             System.out.println("Ocurrio un Problema: " + e.getMessage()); //Muestra el error en pantalla 
+             JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage()); //Muestra el error en pantalla 
          }
          return banderaAniadido; //Retorna el valor booleano
     }

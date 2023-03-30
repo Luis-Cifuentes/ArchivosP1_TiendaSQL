@@ -15,6 +15,7 @@ public class Inicio_Pnl extends javax.swing.JPanel {
      */
     public Inicio_Pnl() {
         initComponents();
+        this.setSize(980, 650);
     }
 
     /**

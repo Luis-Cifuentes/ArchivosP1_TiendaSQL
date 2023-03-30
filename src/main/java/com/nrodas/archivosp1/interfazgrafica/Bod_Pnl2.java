@@ -27,6 +27,7 @@ public class Bod_Pnl2 extends javax.swing.JPanel {
         LlenadorTabla.cambiarEncabezado(this.jTableUpdate, new String[]{"Codigo Producto", "Descripcion", "Cantidad", "Precio Unitario"});
         reporte.retornarProductosInventario(1);
         LlenadorTabla.llenarTablaInventario(this.jTableUpdate, reporte.getLb());
+        this.setSize(980, 650);
         this.jPanelForm.setVisible(false);
     }
 
@@ -61,6 +62,7 @@ public class Bod_Pnl2 extends javax.swing.JPanel {
         jTableUpdate = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(980, 650));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelT1.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
