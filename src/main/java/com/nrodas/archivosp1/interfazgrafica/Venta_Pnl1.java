@@ -741,6 +741,7 @@ public class Venta_Pnl1 extends javax.swing.JPanel {
             if (this.venta.insertarCompra()) { //Valida si la compra fue realizada con exito
                 Conversor.insertarDetalles(jTableDetalle, this.venta.buscarUltimaInsercion(), Conversor.determinarSucursal(this.jLabelSucursal.getText()));
                 VentaR pnl = (VentaR) SwingUtilities.getWindowAncestor(this); //SE vuelve a actualizar el panel
+                this.msg = new ShowMsg(this.frame, true, "Venta Exitosa");
                 pnl.repintarPanelVenta();
             } else {
                 this.msg = new ShowMsg(this.frame, true, "Alguio salio mal en la venta");
