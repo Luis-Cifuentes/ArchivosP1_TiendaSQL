@@ -11,12 +11,14 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase que maneja lo relacionado con la entidad Producto
  * @author lroda
  */
 public class Producto {
     
-    /*Atributos*/
+    /**
+     * Atributos
+     */
     private String codigoProducto;
     private int inventario;
     private String descripcionProducto;
@@ -24,10 +26,23 @@ public class Producto {
     private double precioUnitario;
     
     /*Contructores*/
+
+    /**
+     *
+     */
+
     public Producto() {
         //Constructor por defecto
     }
 
+    /**
+     *
+     * @param codigoProducto El codigo del producto
+     * @param inventario El inventario al que pertenece
+     * @param descripcionProducto La descripcion del producto
+     * @param cantidad La cantidad del producto
+     * @param precioUnitario El precio unitario del producto
+     */
     public Producto(String codigoProducto, int inventario, String descripcionProducto, int cantidad, double precioUnitario) {
         this.codigoProducto = codigoProducto;
         this.inventario = inventario;
@@ -37,6 +52,13 @@ public class Producto {
     }
     
     //Metodos para las Query de Productos
+
+    /**
+     *
+     * @param codigoProducto LE codigo del producto a buscar
+     * @param inventario El inventari del producto en donde buscar
+     * @return productoEncontrado booleano que hace referencia a que el producto existe
+     */
     public boolean buscarProducto(String codigoProducto, int inventario) { //Metodo que busca el producto
         boolean productoEncontrado = false; //Bandera que indica si fue encontrado
         //Se prepara la consulta
@@ -62,6 +84,11 @@ public class Producto {
     }
     
     //Metodo para agregar un producto
+
+    /**
+     *
+     * @return retorna un booleano que indica si el producto fue ingresaco correctamente 
+     */
     public boolean insertarProducto () {
         boolean correctInsert = false; //Bandera que indica que el producto fue agregado
         String consulta = "INSERT INTO ControlTienda.Producto VALUES (?, ?, ?, ?, ?)"; //Se formula el Query
@@ -80,25 +107,16 @@ public class Producto {
         }
         return correctInsert; //Devuelve si la operacion se realizo con exito
     }
-    
-    //Metodo para eliminar un producto
-    public boolean eliminarProducto(String codigoProducto, int noInventario) { //Metodo que elimina un producto del inventario
-        boolean fueEliminado = false; //Bandera que indica si fue eliminado con exito
-        String consulta = "DELETE FROM ControlTienda.Producto WHERE codigoPdt = ? AND inventario = ?"; //Se formula la Query
-        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) { //Se prepara la consulta
-            //Se sustituyen los datos
-            preSt.setString(1, codigoProducto);
-            preSt.setInt(2, noInventario);
-            if (preSt.executeUpdate() > 0) { //Valida que se haya realizado correctamente
-                fueEliminado = true;
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage()); //Muestra un mensaje si existe un error
-        }
-        return fueEliminado; //Retorna el valor de la bandera
-    }
-    
+ 
     //Metodo para actualizar el stock de un producto
+
+    /**
+     *
+     * @param codigoProducto El codigo del producto a actualizar
+     * @param noInventario El inventario del producto a actualizar
+     * @param cantidadActual La neuva cantidad de ese producto
+     * @return booleano que indica si el stock fue actualizado correctamente
+     */
     public boolean actualizarStock(String codigoProducto, int noInventario, int cantidadActual) {
         boolean stockActualizado = false; //Bandera que indica que la operacion fue realizada con exito
         String consulta = "UPDATE ControlTienda.Producto SET cantidad = ? WHERE codigoPdt = ? AND inventario = ?"; //Se formula la Query
@@ -115,64 +133,130 @@ public class Producto {
         return stockActualizado; //Se retorna el valor de exito de la operacion
     }
     
-    public boolean actualizarProducto(String codigoPdt, int inventario, String descrip, int newCantidad, double newPrecio) {
-        boolean productoMod = false; //Bandera que indica si se logro con exito
-        //Se crea una query que permita actualizar los datos de un producto
-        String consulta = "UPDATE ControlTienda.Producto SET descripcion = ?, cantidad = ?, precioUnitario = ? WHERE codigoPdt = ? AND inventario = ?";
-        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) { //Se prepara la llamada
-            preSt.setString(1, descrip); //Se sustituyen valores
-            preSt.setInt(2, newCantidad);
-            preSt.setDouble(3, newPrecio);
-            preSt.setString(4, codigoPdt);
-            preSt.setInt(5, inventario);
-            if (preSt.executeUpdate() > 0) { //Vadlida que se haya realizado con exito
-                productoMod = true;
+    /**
+     * Metodo que actualiza el nombre de un producto
+     * @param nuevaDesc La nueva descripcion
+     * @return El resultado de la operacion si es verdader o falso
+     */
+    public boolean acutalizatDesc(String nuevaDesc) {
+        boolean actualizado = false;
+        String consulta = "UPDATE ControlTienda.Producto SET descripcion = ? WHERE codigoPdt = ? AND inventario = ?";
+        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) {
+            preSt.setString(1, nuevaDesc);
+            preSt.setString(2, this.codigoProducto);
+            preSt.setInt(3, this.inventario);
+            if (preSt.executeUpdate() > 0) {
+                actualizado = true;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ocurrio un Problema" + e.getMessage());//Muestra el error
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        return productoMod; //Retorna el resultado de la operacion
+        return actualizado;
     }
+    
+    /**
+     * Metodo que actualiza el prezio de un producto
+     * @param nuevoPrecio El nuevo precio que tendra
+     * @return El resultado de la operacion
+     */
+    public boolean actualizarPrezio(double nuevoPrecio) {
+        boolean actualizado = false;
+        String consulta = "UPDATE ControlTienda.Producto SET precioUnitario = ? WHERE codigoPdt = ? AND inventario = ?";
+        try (PreparedStatement preSt = Conexion.getConexionDB().prepareCall(consulta)) {
+            preSt.setDouble(1, nuevoPrecio);
+            preSt.setString(2, this.codigoProducto);
+            preSt.setInt(3, this.inventario);
+            if (preSt.executeUpdate() > 0) {
+                actualizado = true;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return actualizado;
+    }
+            
     
     
 
     /*Getters y Setters*/
+
+    /**
+     *
+     * @return codigo de producto
+     */
+
     public String getCodigoProducto() {
         return codigoProducto;
     }
 
+    /**
+     *
+     * @param codigoProducto El codigo del producto
+     */
     public void setCodigoProducto(String codigoProducto) {
         this.codigoProducto = codigoProducto;
     }
 
+    /**
+     *
+     * @return numero de inventario
+     */
     public int getInventario() {
         return inventario;
     }
 
+    /**
+     *
+     * @param inventario El inventario
+     */
     public void setInventario(int inventario) {
         this.inventario = inventario;
     }
 
+    /**
+     *
+     * @return la descripcion del producto
+     */
     public String getDescripcionProducto() {
         return descripcionProducto;
     }
 
+    /**
+     *
+     * @param descripcionProducto La descripcion del producto
+     */
     public void setDescripcionProducto(String descripcionProducto) {
         this.descripcionProducto = descripcionProducto;
     }
 
+    /**
+     *
+     * @return la cantiad del producto
+     */
     public int getCantidad() {
         return cantidad;
     }
 
+    /**
+     *
+     * @param cantidad La cantidad del producto
+     */
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
+    /**
+     *
+     * @return el precio unitario del producto
+     */
     public double getPrecioUnitario() {
         return precioUnitario;
     }
 
+    /**
+     *
+     * @param precioUnitario El precio del producto
+     */
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }

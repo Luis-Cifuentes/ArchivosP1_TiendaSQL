@@ -14,17 +14,23 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase que maneja lo relacionado con los Reportes (Hace Consultas Tambien)
  * @author lroda
  */
 public class Reporte {
     
-    /*Atributos*/
+    /**
+     * Atributos
+     */
     private Matriz lb;
     
     
     /*Metodos para los reportes*/
     //Metodo para ver las sucursales con mas ventas
+
+    /**
+     *
+     */
     public void calcularVentasPorSucursal() {
         this.lb = new Matriz(); // Se crea una nueva instancia de la matriz
         /*
@@ -48,6 +54,10 @@ public class Reporte {
     }
     
     //Metodo para ver las sucursales con mas ventas
+
+    /**
+     *
+     */
     public void calcularIngresosPorSucursal() {
         this.lb = new Matriz();
         /*
@@ -70,6 +80,10 @@ public class Reporte {
     }
     
     //Funcion que determina que clientes generan mas ingresan
+
+    /**
+     *
+     */
     public void buscarClientesGanancias() {
         this.lb = new Matriz(); //Se crea una nueva instancia de la matriz
         /*
@@ -93,6 +107,10 @@ public class Reporte {
     }
     
     //Funcion que busca a los tres empleados con mas ventas
+
+    /**
+     *
+     */
     public void contarEmpleadosVentas() {
         this.lb = new Matriz(); //Se crea una nueva instancia de la matriz
         /*
@@ -118,6 +136,10 @@ public class Reporte {
     }
     
     //Metodo que averigua los empleados con mas ingresos
+
+    /**
+     *
+     */
     public void sumarEmpleadosIngresos() {
         this.lb = new Matriz(); //Se crea una nueva instancia de la matriz
         /*
@@ -142,6 +164,10 @@ public class Reporte {
     }
     
     //Metodo que busca los 10 productos mas vendidos
+
+    /**
+     *
+     */
     public void buscarProductosVendidos() {
         this.lb = new Matriz(); //Se crea una nueva instancia de la Matriz
         /*
@@ -166,6 +192,10 @@ public class Reporte {
     }
     
     //Metodo que busca los 10 productos mas vendidos
+
+    /**
+     *
+     */
     public void contarProductosIngresos() {
         this.lb = new Matriz(); //Se crea una nueva instancia de la Matriz
         /*
@@ -190,6 +220,11 @@ public class Reporte {
     }
     
     //Metodo que busca los 5 productos mas vendidos por el id de sucursal
+
+    /**
+     *
+     * @param idSucursal El id de la sucursal a evaluar
+     */
     public void buscarTop5Productos(int idSucursal) {
         this.lb = new Matriz(); //Crea una nueva instancia para la matriz
         //Se formula una consulta que seleccione los productos por id de inventario y que sume sus cantidades 
@@ -211,6 +246,11 @@ public class Reporte {
     }
     
     //Metodo que busca los 5 productos mas vendidos por el id de sucursal
+
+    /**
+     *
+     * @param idSucursal El id de la sucursal a evaluar
+     */
     public void buscarTop5ProductosIng(int idSucursal) {
         this.lb = new Matriz(); //Se crea una nueva instacia de la matriz
         //Se formula una Query que agrupe por el codigo pdt de cierto inventario y que sume sus ganacias ordenandolos de manera descendiente
@@ -232,6 +272,11 @@ public class Reporte {
     }
     
     //Metodo que busca los productos por numero de inventario
+
+    /**
+     *
+     * @param inventario El inventario del que se quieren ver los productos
+     */
     public void retornarProductosInventario(int inventario) {
         this.lb = new Matriz(); //Se crea una nueva instancia de la matriz
         //Se formula una Query que recoja los productos por numero de inventario
@@ -256,10 +301,18 @@ public class Reporte {
         }
     }
 
+    /**
+     *
+     * @return la matriz de reporte
+     */
     public Matriz getLb() {
         return lb;
     }
 
+    /**
+     *
+     * @param lb La nueva matriz
+     */
     public void setLb(Matriz lb) {
         this.lb = lb;
     } 

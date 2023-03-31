@@ -14,13 +14,19 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase que maneja el panel 2 de bodega
  * @author lroda
  */
 public class Bod_Pnl2 extends javax.swing.JPanel {
 
+    /**
+     * Atributos
+     */
     private Producto producto;
 
+    /**
+     * Constructor
+     */
     public Bod_Pnl2() {
         initComponents();
         Reporte reporte = new Reporte();
@@ -355,10 +361,11 @@ public class Bod_Pnl2 extends javax.swing.JPanel {
      */
     private void jLabelBtnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnModificarMouseClicked
         if (this.jLabelBtnModificar.isEnabled()) {
-            boolean actualizado = this.producto.actualizarProducto(producto.getCodigoProducto(), producto.getInventario(),
-                    this.jTextFieldDesc.getText(), Integer.valueOf(String.valueOf(this.jSpinnerCantidad.getValue())),
-                    Double.valueOf(this.jTextFieldPrezio.getText().trim()));
-            if (actualizado) {
+            boolean actualizarDesc = this.producto.acutalizatDesc(this.jTextFieldDesc.getText().trim());
+            boolean actualizarPrec = this.producto.actualizarPrezio(Double.valueOf(this.jTextFieldPrezio.getText().trim()));
+            boolean actualizarStock = this.producto.actualizarStock(this.producto.getCodigoProducto(), this.producto.getInventario(),
+                    Integer.valueOf(String.valueOf(this.jSpinnerCantidad.getValue())));
+            if (actualizarDesc && actualizarPrec && actualizarStock) {
                 JOptionPane.showMessageDialog(null, "Producto Actualizado");
                 this.jPanelForm.setVisible(false);
                 Bodega bod = (Bodega)SwingUtilities.getWindowAncestor(this);

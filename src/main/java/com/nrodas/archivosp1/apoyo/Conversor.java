@@ -9,7 +9,7 @@ import com.nrodas.archivosp1.entidades.Producto;
 import javax.swing.JTable;
 
 /**
- *
+ * Clase que ayuda en muchos otros metodos, en su mayoria a convertir
  * @author lroda
  */
 public class Conversor {
@@ -18,8 +18,8 @@ public class Conversor {
 
     /**
      *
-     * @param nombreSucursal
-     * @return
+     * @param nombreSucursal que sera convertida a su inventario
+     * @return un int que hace referencia al inventario
      */
     public static int determinarSucursal(String nombreSucursal) {
         int inventario = 0;
@@ -40,8 +40,8 @@ public class Conversor {
 
     /**
      *
-     * @param inventario
-     * @return
+     * @param inventario del cual obtendremos la sucursal
+     * @return un String que hace referencia al nombre de la sucursal a partir del inventario
      */
     public static String determinarNombreSucursalInv(int inventario) {
         String sucursal = "";
@@ -61,8 +61,8 @@ public class Conversor {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id que posee cada sucursal
+     * @return retorna un string que hace referencia al nombre de la sucursal dependiendo del id que tenga
      */
     public static String determinarNombreSucursal(int id) {
         if (id == 3) {
@@ -79,8 +79,8 @@ public class Conversor {
 
     /**
      *
-     * @param totalAnterior
-     * @return
+     * @param totalAnterior de la ultima compra
+     * @return un double que hace referencia al descuento que tiene derecho el cliente
      */
     public static double retornarDescuento(double totalAnterior) {
         if (totalAnterior < 1000) {
@@ -98,9 +98,9 @@ public class Conversor {
 
     /**
      *
-     * @param tabla
-     * @param desc
-     * @return
+     * @param tabla de la cual se obtendra el total de su columna
+     * @param desc el descuendo al que tiene derecho el cliente
+     * @return un double que hace referencia al nuevo total
      */
     public static double calcularTotal(JTable tabla, String desc) {
         int columna = 3;
@@ -117,10 +117,10 @@ public class Conversor {
 
     /**
      *
-     * @param tabla
-     * @param idVenta
-     * @param inventario
-     * @return
+     * @param tabla de la cual se obtienen los detalles
+     * @param idVenta que indica el id de la venta a la que pertenecera
+     * @param inventario al cual hace referencia el detalle
+     * @return un booleano qu eindica si se realizo con exito la insercion de detalles de venta
      */
     public static boolean insertarDetalles(JTable tabla, int idVenta, int inventario) {
         boolean operacionExitosa = true;

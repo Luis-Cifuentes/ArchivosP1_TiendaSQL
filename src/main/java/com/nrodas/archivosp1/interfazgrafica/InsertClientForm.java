@@ -9,13 +9,22 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 /**
- *
+ * Clase encargada de permitir agregar al cliente
  * @author lroda
  */
 public class InsertClientForm extends javax.swing.JDialog {
 
+    /**
+     * Atributos
+     */
     int nitCliente;
     
+    /**
+     *
+     * @param frame El frame al cual bloqueara
+     * @param modal El modo que realizada
+     * @param nitcliente El nit del cliente
+     */
     public InsertClientForm(JFrame frame, boolean modal, int nitcliente) {
         super(frame, modal);
         initComponents();
@@ -151,9 +160,6 @@ public class InsertClientForm extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jLabelAgregarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

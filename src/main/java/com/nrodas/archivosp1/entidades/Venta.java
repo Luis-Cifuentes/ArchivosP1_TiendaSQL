@@ -14,12 +14,14 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase relacionada con la entidad Venta
  * @author lroda
  */
 public class Venta {
     
-    /*Atributos*/
+    /**
+     * Atributos
+     */
     private int sucursal;
     private Date fechaVenta;
     private long codigoEmpleado;
@@ -28,10 +30,24 @@ public class Venta {
     private double total;
     
     /*Constructor*/
+
+    /**
+     *
+     */
+
     public Venta() {
         //Constructor por defecto
     }
 
+    /**
+     *
+     * @param sucursal La sucursal en la que se realiza
+     * @param fechaVenta La fecha en la que se realiza
+     * @param codigoEmpleado El codigo del usuario que la realiza
+     * @param nitCliente El nit del cliente que participa
+     * @param cFinal Si presenta consumidor final
+     * @param total El total de la venta
+     */
     public Venta(int sucursal, Date fechaVenta, long codigoEmpleado, String nitCliente, boolean cFinal, double total) {
         this.sucursal = sucursal;
         this.fechaVenta = fechaVenta;
@@ -42,6 +58,11 @@ public class Venta {
     }
     
     //Metodos para realizar las Query
+
+    /**
+     *
+     * @return booleano que indica si la compra se realizo con exito
+     */
     public boolean insertarCompra() { //Metodo que registra las ventas
         boolean insercionCorrecta = false; //Bandera que Indica que la vetna fue realizada
         //Se formula la Query
@@ -68,6 +89,12 @@ public class Venta {
     }
     
     //Metodo que busca la ultima compra y retorna el descuento
+
+    /**
+     *
+     * @param nitCliente El nit del cliente que compra
+     * @return double que indica el total de la ultima compra de un cliente
+     */
     public double buscarUltimaCompra(int nitCliente) { //Busca la ultima compra con el nit del cliente
         double totalAnterior = 0; //Retorne el total gastado de esa compra
         //Se formula la Query
@@ -86,6 +113,11 @@ public class Venta {
     }
     
     //Metodo que obtiene el id de factura mas alto
+
+    /**
+     *
+     * @return entero que indica el valor maximo de la ultima venta
+     */
     public int buscarUltimaInsercion() {
         int idMax = 0; //Id de la ultima venta
         String consulta = "SELECT MAX(idVenta) FROM ControlTienda.Venta"; //Query que selecciona el ID de la ultima venta
@@ -102,50 +134,99 @@ public class Venta {
     }
     
     //Getters y Setters
+
+    /**
+     *
+     * @return int que indica la sucursal de la vetna
+     */
     public int getSucursal() {
         return sucursal;
     }
 
+    /**
+     *
+     * @param sucursal La sucursal en la que se realiza
+     */
     public void setSucursal(int sucursal) {
         this.sucursal = sucursal;
     }
 
+    /**
+     *
+     * @return la fecha de vetna
+     */
     public Date getFechaVenta() {
         return fechaVenta;
     }
 
+    /**
+     *
+     * @param fechaVenta La fecha en la que se realiza
+     */
     public void setFechaVenta(Date fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
 
+    /**
+     *
+     * @return el codigo del empleado
+     */
     public Long getCodigoEmpleado() {
         return codigoEmpleado;
     }
 
+    /**
+     *
+     * @param codigoEmpleado El empleado que la realiza
+     */
     public void setCodigoEmpleado(Long codigoEmpleado) {
         this.codigoEmpleado = codigoEmpleado;
     }
 
+    /**
+     *
+     * @return el nit del cliente
+     */
     public String getNitCliente() {
         return nitCliente;
     }
 
+    /**
+     *
+     * @param nitCliente El cliente que participa
+     */
     public void setNitCliente(String nitCliente) {
         this.nitCliente = nitCliente;
     }
 
+    /**
+     *
+     * @return booleano que indica si es Consumidor Final o no
+     */
     public boolean iscFinal() {
         return cFinal;
     }
 
+    /**
+     *
+     * @param cFinal Si es consumidor final o no
+     */
     public void setcFinal(boolean cFinal) {
         this.cFinal = cFinal;
     }
 
+    /**
+     *
+     * @return total de la venta
+     */
     public double getTotal() {
         return total;
     }
 
+    /**
+     *
+     * @param total El total de la venta
+     */
     public void setTotal(double total) {
         this.total = total;
     }

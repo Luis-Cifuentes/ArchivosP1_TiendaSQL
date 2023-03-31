@@ -12,13 +12,19 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase que maneja el panel 1 de bodega
  * @author lroda
  */
 public class Bod_Pnl1 extends javax.swing.JPanel {
 
+    /**
+     * Atributos
+     */
     private final Reporte reporte;
     
+    /**
+     * Constructor
+     */
     public Bod_Pnl1() {
         initComponents();
         reporte = new Reporte();
@@ -250,6 +256,9 @@ public class Bod_Pnl1 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jLabelBtnAgregarMouseClicked
 
+    /**
+     *
+     */
     public void setearValores(){
         this.jTextFieldCodigoPdt.setText("");
         this.jTextFieldDescripcion.setText("");

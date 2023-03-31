@@ -11,21 +11,31 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase que maneja lo relacionado con la entidad Cliente
  * @author lroda
  */
 public class Cliente {
     
-    /*Atributos de entidad*/
+    /** 
+    * Atributos
+    */
     private int nitCliente;
     private String apellidoCliente;
     private String nombreCliente;
     
-    /*Constructores*/
+    /**
+     * Constructor
+    */
     public Cliente() {
         //Constructor por defecto
     }
 
+    /**
+     *
+     * @param nitCliente El nit del cliente
+     * @param apellidoCliente El apellido del cliente
+     * @param nombreCliente El nombre del cliente
+     */
     public Cliente(int nitCliente, String apellidoCliente, String nombreCliente) {
         //Constructor con parametros
         this.nitCliente = nitCliente;
@@ -34,6 +44,14 @@ public class Cliente {
     }
     
     //Metodos Para las Query con Clientes
+
+    /**
+     *
+     * @param nombre El nombre del cliente
+     * @param apellido El apellido del cliente
+     * @param nit El nit del cliente
+     * @return retorna un booleano que indica si el cliente fue actualizado con exito
+     */
     public boolean actualizarCliente(String nombre, String apellido, int nit) { //Metodo que recibe los datos a actualizar del Cliente
         boolean correctUpdate = false; //Bandera que marca si se realizo con exito
         String consulta = "UPDATE ControlTienda.Cliente SET nombreCliente = ?, apellidoCliente = ? WHERE nit = ?"; //Se prepara la Query
@@ -53,6 +71,11 @@ public class Cliente {
     }
     
     //Metodo para Insertar un cliente
+
+    /**
+     *
+     * @return un booleano que indica si el cliente fue insertado correctamente
+     */
     public boolean insertarCliente() {
         boolean correctInsert = false; //Bandera que indica que fue agregado
         String consulta = "INSERT INTO ControlTienda.Cliente(nit, apellidoCliente, nombreCliente) VALUES (?, ?, ?)"; //Se prepara la consulta
@@ -72,6 +95,12 @@ public class Cliente {
     }
     
     //Metodo para buscarUnCliente
+
+    /**
+     *
+     * @param nit El nit del cliente
+     * @return un booleano qu eindica si el cliente existe en la base de datos
+     */
     public boolean buscarCliente(int nit) {
         boolean clienteEncontrado = false; //Bandera que indica si el cliente fue encontrado
         String consulta = "SELECT apellidoCliente, nombreCliente FROM ControlTienda.Cliente WHERE nit = ?"; //Se prepara la Query
@@ -95,26 +124,52 @@ public class Cliente {
     }
     
     /*Getters y Setters*/
+
+    /**
+     *
+     * @return un entero que hacer referencia al nit del cliente
+     */
+
     public int getNitCliente() {
         return nitCliente;
     }
 
+    /**
+     *
+     * @param nitCliente El nit del cliente
+     */
     public void setNitCliente(int nitCliente) {
         this.nitCliente = nitCliente;
     }
 
+    /**
+     *
+     * @return retorna el atrbuto apellido del ciente
+     */
     public String getApellidoCliente() {
         return apellidoCliente;
     }
 
+    /**
+     *
+     * @param apellidoCliente El apellido del cliente
+     */
     public void setApellidoCliente(String apellidoCliente) {
         this.apellidoCliente = apellidoCliente;
     }
 
+    /**
+     *
+     * @return retorna el nombre del cliente
+     */
     public String getNombreCliente() {
         return nombreCliente;
     }
 
+    /**
+     *
+     * @param nombreCliente El nombre del cliente
+     */
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }

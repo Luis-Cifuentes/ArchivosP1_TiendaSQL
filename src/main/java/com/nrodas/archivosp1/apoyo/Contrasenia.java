@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Clase que hasea las contraseñas
  * @author lroda
  */
 public class Contrasenia {
@@ -21,8 +21,8 @@ public class Contrasenia {
 
     /**
      *
-     * @param contrasenia
-     * @return
+     * @param contrasenia que que sera hasheada
+     * @return un string de la constrasenia hasheada
      */
     public static String hashearContrasenia(String contrasenia) {
         String passwrd = "";

@@ -7,11 +7,9 @@ package com.nrodas.archivosp1.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
+ * Clase que inicializa la conexion con la base de datos
  * @author lroda
  */
 public class Conexion {
@@ -22,6 +20,11 @@ public class Conexion {
     private final String contrasenia = "nbpjxdxd2";
     
     //Creamos el metodo de conexion 
+
+    /**
+     *
+     * @return un booleano que indica si la conexion fue realizada con exito
+     */
     public boolean iniciarConexionDB() {
         try {
             conexionDB = DriverManager.getConnection(this.url, this.usuario, this.contrasenia);
@@ -33,6 +36,10 @@ public class Conexion {
     }
     
     //Crea el metodo que cierra la conexion
+
+    /**
+     *
+     */
     public static void cerrarConexionDB(){
         if (conexionDB != null) {
             try {
@@ -44,6 +51,11 @@ public class Conexion {
     }
     
     //Getter de conexionDB
+
+    /**
+     *
+     * @return retorna la variable conexion
+     */
 
     public static Connection getConexionDB() {
         return conexionDB;

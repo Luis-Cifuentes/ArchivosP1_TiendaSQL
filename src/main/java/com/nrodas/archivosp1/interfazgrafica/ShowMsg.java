@@ -7,13 +7,16 @@ package com.nrodas.archivosp1.interfazgrafica;
 import java.awt.Color;
 
 /**
- *
+ * Clase encargada de presentar mensajes de informacion
  * @author lroda
  */
 public class ShowMsg extends javax.swing.JDialog {
 
     /**
      * Creates new form ShowMsg
+     * @param parent El frame que bloqueara
+     * @param modal El modo que dentra
+     * @param mensaje El mensaje que mostrara
      */
     public ShowMsg(java.awt.Frame parent, boolean modal, String mensaje) {
         super(parent, modal);
@@ -125,9 +128,7 @@ public class ShowMsg extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jLabelBtnAMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelBtnA;

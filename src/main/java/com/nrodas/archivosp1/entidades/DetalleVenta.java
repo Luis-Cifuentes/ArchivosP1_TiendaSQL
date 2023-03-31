@@ -10,12 +10,14 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase que maneja lo relacionado con la entidad DetalleVenta
  * @author lroda
  */
 public class DetalleVenta {
     
-    /*Atributos*/
+    /**
+     * Atributos
+     */
     private int idVenta;
     private String codigoProducto;
     private int inventario;
@@ -24,10 +26,24 @@ public class DetalleVenta {
     private double subTotal;
     
     /*Constructores*/
+
+    /**
+     *
+     */
+
     public DetalleVenta() {
         //Constructor por defecto
     }
 
+    /**
+     *
+     * @param idVenta El id de la Venta
+     * @param codigoProducto El codigo del producto
+     * @param inventario El inventario al que pertenece el producto
+     * @param descripcionProducto La descripcion del producto
+     * @param cantidadProducto La cantidad que se comprara del producto
+     * @param subTotal El subtotal de la subcompra
+     */
     public DetalleVenta(int idVenta, String codigoProducto, int inventario, String descripcionProducto, int cantidadProducto, double subTotal) {
         //Constructor con parametros
         this.idVenta = idVenta;
@@ -41,6 +57,11 @@ public class DetalleVenta {
     /*Metodos para las Query necesarias*/
     
     //Metodo que ingresa un nuevoDetalleVenta
+
+    /**
+     *
+     * @return retorna un booleano  que indica si el detalle se agrego correctamente
+     */
     public boolean agregarDtlVenta() {
         boolean detalleAgregado = false; //Bandera que indica si un detalle de vetna fue agregado correctamente
         //Se formula la Query para que inserte datos en la tabla DetalleVenta
@@ -62,50 +83,99 @@ public class DetalleVenta {
     }
     
     //Getters y Setters
+
+    /**
+     *
+     * @return retorna el id de venta
+     */
     public int getIdVenta() {
         return idVenta;
     }
 
+    /**
+     *
+     * @param idVenta El id de la venta
+     */
     public void setIdVenta(int idVenta) {
         this.idVenta = idVenta;
     }
 
+    /**
+     *
+     * @return retorna el codigo del producto
+     */
     public String getCodigoProducto() {
         return codigoProducto;
     }
 
+    /**
+     *
+     * @param codigoProducto El codigo del producto
+     */
     public void setCodigoProducto(String codigoProducto) {
         this.codigoProducto = codigoProducto;
     }
 
+    /**
+     *
+     * @return retorna la descripcion del producto
+     */
     public String getDescripcionProducto() {
         return descripcionProducto;
     }
 
+    /**
+     *
+     * @param descripcionProducto La descripcion del producto
+     */
     public void setDescripcionProducto(String descripcionProducto) {
         this.descripcionProducto = descripcionProducto;
     }
 
+    /**
+     *
+     * @return retorna la cantidad del producto
+     */
     public int getCantidadProducto() {
         return cantidadProducto;
     }
 
+    /**
+     *
+     * @param cantidadProducto La nueva cantidad del producto
+     */
     public void setCantidadProducto(int cantidadProducto) {
         this.cantidadProducto = cantidadProducto;
     }
 
+    /**
+     *
+     * @return retorna el subtotal que otorga el detalle de venta
+     */
     public double getSubTotal() {
         return subTotal;
     }
 
+    /**
+     *
+     * @param subTotal El subtotal del detalle
+     */
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
 
+    /**
+     *
+     * @return retorna el inventario del detalle de venta
+     */
     public int getInventario() {
         return inventario;
     }
 
+    /**
+     *
+     * @param inventario El inventario al que pertenecera
+     */
     public void setInventario(int inventario) {
         this.inventario = inventario;
     }

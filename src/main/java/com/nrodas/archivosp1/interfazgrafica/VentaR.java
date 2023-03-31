@@ -11,14 +11,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- *
+ * Clase encargada de generar la UI de Ventas
  * @author lroda
  */
 public class VentaR extends javax.swing.JFrame {
 
+    /**
+     * Atributos
+     */
     int moveX;
     int moveY;
     
+    /**
+     * Constructor
+     */
     public VentaR() {
         initComponents();
         this.setResizable(false);
@@ -423,6 +429,9 @@ public class VentaR extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabelBtnCerrarSecionMouseClicked
 
+    /**
+     * Metodo que repinta el panel de ventas
+     */
     public void repintarPanelVenta() {
         Venta_Pnl1 pnl1 = new Venta_Pnl1();
         this.jPanelCambiante.removeAll();
@@ -431,6 +440,9 @@ public class VentaR extends javax.swing.JFrame {
         this.jPanelCambiante.revalidate();
     }
     
+    /**
+     * Metodo que repinta el panel de modficiar clientes
+     */
     public void repintarPanelUpdate() {
         Venta_Pnl2 pnl1 = new Venta_Pnl2();
         this.jPanelCambiante.removeAll();
@@ -442,11 +454,6 @@ public class VentaR extends javax.swing.JFrame {
     
     
     
-    
-    
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelBtnActualizarClientes;

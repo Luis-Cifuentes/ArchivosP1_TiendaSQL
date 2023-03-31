@@ -16,14 +16,20 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase encargada del panel 1 de inventario
  * @author lroda
  */
 public class Inv_Pnl1 extends javax.swing.JPanel {
 
+    /**
+     * Atributos
+     */
     private Reporte reporte;
     private Producto prt;
     
+    /**
+     * Constructor
+     */
     public Inv_Pnl1() {
         initComponents();
         this.reporte = new Reporte();
@@ -332,17 +338,24 @@ public class Inv_Pnl1 extends javax.swing.JPanel {
     /*Evento relacionado con el click de adquirir*/
     
     private void jLabelBtnAdquirirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBtnAdquirirMouseClicked
-        Producto product = new Producto();
-        int inventario = Conversor.determinarSucursal(this.jLabelSucursal.getText().trim());
-        String producto = this.jTextFieldCodigoPdt.getText();
-        int cantidad = Integer.valueOf(String.valueOf(this.jSpinnerCantidad.getValue()));
+        Producto product = new Producto(); //Se crea una nueva instancia de producto
+        int inventario = Conversor.determinarSucursal(this.jLabelSucursal.getText().trim()); //Se determina su inventario
+        String producto = this.jTextFieldCodigoPdt.getText(); //Se obtiene el codigo del prodcuto a travez del jtextfield
+        int cantidad = Integer.valueOf(String.valueOf(this.jSpinnerCantidad.getValue())); //Se obtiene su nueva cantidad
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this); //Obtiene el frame en el que se encuentra el panel
-        if (this.jLabelBtnAdquirir.isEnabled()) {
-            if (product.buscarProducto(producto, inventario)) {
+        if (this.jLabelBtnAdquirir.isEnabled()) { //Valida que el boton este disponible
+            if (product.buscarProducto(producto, inventario)) { //Valida que el producto exista
+                if (!this.prt.getDescripcionProducto().equals(product.getDescripcionProducto())) { //Valida si tienen el mismo nombre
+                    product.acutalizatDesc(this.prt.getDescripcionProducto()); //Lo actualizo si es le caso de que no
+                }
+                if (this.prt.getPrecioUnitario() != product.getPrecioUnitario()) { //Valida si tienen el mismo precio
+                    product.actualizarPrezio(this.prt.getPrecioUnitario()); //Lo actualiza si no es el caso
+                }
+                //Actualiza los stocks
                 product.actualizarStock(producto, inventario, product.getCantidad() + cantidad);
                 this.prt.actualizarStock(this.prt.getCodigoProducto(), this.prt.getInventario(), this.prt.getCantidad() - cantidad);
                 ShowMsg msg = new ShowMsg(frame, true, "Stocks Actualizados");
-            } else {
+            } else { //Inserta el producto por si no existe ahi
                 Producto pdt = new Producto(producto, inventario, this.prt.getDescripcionProducto(), cantidad, this.prt.getPrecioUnitario());
                 pdt.insertarProducto();
                 this.prt.actualizarStock(this.prt.getCodigoProducto(), this.prt.getInventario(), this.prt.getCantidad() - cantidad);

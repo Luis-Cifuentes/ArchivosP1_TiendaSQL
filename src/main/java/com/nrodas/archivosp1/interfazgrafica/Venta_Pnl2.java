@@ -12,13 +12,19 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase encargada de manejar el panel 2 de ventas
  * @author lroda
  */
 public class Venta_Pnl2 extends javax.swing.JPanel {
 
+    /**
+     * Atributos
+     */
     private Cliente cliente;
     
+    /**
+     * Constructor
+     */
     public Venta_Pnl2() {
         initComponents();
         this.setSize(980, 650);

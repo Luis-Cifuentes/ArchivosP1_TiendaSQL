@@ -5,22 +5,35 @@
 package com.nrodas.archivosp1.listas;
 
 /**
- *
+ * Clase encargada de crear listas bidimensionales
  * @author lroda
  */
 public class Matriz {
     
-    /*Atributos*/
+    /**
+     * Atributos
+     */
     private Lista primera;
     private Lista ultima;
     
     /*Contructor*/
+
+    /**
+     *
+     */
+
     public Matriz() {
         this.primera = null;
         this.ultima = null;
     }
     
     /*Metodo para agregar una nueva lista*/
+
+    /**
+     *
+     * @param lista La lista que sera agregada
+     */
+
     public void agregarNuevaLista(Lista lista) {
         if (this.primera == null) { //Si la primer lista es nula
             this.ultima = lista; //La ultima lista apuntara a una lista
@@ -32,18 +45,36 @@ public class Matriz {
     }
 
     /*Getters y Setters*/
+
+    /**
+     *
+     * @return la prime rlista
+     */
+
     public Lista getPrimera() {
         return primera;
     }
 
+    /**
+     *
+     * @param primera La primer lista
+     */
     public void setPrimera(Lista primera) {
         this.primera = primera;
     }
 
+    /**
+     *
+     * @return la ultima lista
+     */
     public Lista getUltima() {
         return ultima;
     }
 
+    /**
+     *
+     * @param ultima La ultima lista
+     */
     public void setUltima(Lista ultima) {
         this.ultima = ultima;
     }

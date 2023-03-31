@@ -15,11 +15,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 /**
- *
+ * Clase que llena las tablas de la aplicacion
  * @author lroda
  */
 public class LlenadorTabla {
     
+    /**
+     * 
+     * @param tabla La tabla a la cual se le cambiara el titulo
+     * @param titulos Los titulos se le agregaran a la tabla
+     */
     public static void cambiarEncabezado(JTable tabla, String[] titulos) {
         JTableHeader header = tabla.getTableHeader();
         header.setBackground(new Color(94, 96, 98));
@@ -41,6 +46,11 @@ public class LlenadorTabla {
         tabla.setModel(modelo);
     }
     
+    /**
+     *
+     * @param tabla La tabla a la cual se le insertaran datos
+     * @param lista La matriz de la cual se obtendran los datos 
+     */
     public static void llenarTabla(JTable tabla, Lista lista){
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         Object[] objeto = new Object[lista.hallarTamanio()];
@@ -54,6 +64,11 @@ public class LlenadorTabla {
         modelo.addRow(objeto);
     }
     
+    /**
+     *
+     * @param tabla La tabla ala cual se le insertaran los datos
+     * @param matriz La matriz de la cual se obtendran los datos
+     */
     public static void llenarTabla(JTable tabla, Matriz matriz) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         int tamanio = matriz.getPrimera().hallarTamanio();
@@ -75,6 +90,11 @@ public class LlenadorTabla {
         }
     }
     
+    /**
+     *
+     * @param tabla La tabla a la cual se le insertaran los datos
+     * @param matriz La matriz de la cual se obtendra los valores
+     */
     public static void llenarTablaInventario(JTable tabla, Matriz matriz) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         int tamanio = matriz.getPrimera().hallarTamanio();
@@ -94,6 +114,15 @@ public class LlenadorTabla {
     }
     
     //Metodo que verifica si un producto ya esta en la factura
+
+    /**
+     *
+     * @param table La tabla en la cual se verificara un producto
+     * @param codigoPdt El codigo del producto a buscar
+     * @param cantidadPdt La cantidad del producto en el stock de la tienda
+     * @param cantidad La cantidad que se le sumara a la venta
+     * @return retorna un int que indica si el producto ingresado ya existia o no
+     */
     public static int verificarCompra(JTable table, String codigoPdt, int cantidadPdt, int cantidad){
         int existe = 0;
         int filas = table.getRowCount();

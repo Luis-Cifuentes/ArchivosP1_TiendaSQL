@@ -11,13 +11,20 @@ import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 
 /**
+ * Clase que maneja el penel 1 de administracion
  *
  * @author lroda
  */
 public class Admin_Pnl1 extends javax.swing.JPanel {
 
+    /**
+     * Atributos
+     */
     Reporte reporte;
-    
+
+    /**
+     * Constructor
+     */
     public Admin_Pnl1() {
         initComponents();
         reporte = new Reporte();
@@ -126,66 +133,71 @@ public class Admin_Pnl1 extends javax.swing.JPanel {
         switch (item) {
             case 0:
                 reporte.buscarClientesGanancias();
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Ganancias", "NIT", "Nombre del Cliente"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Ganancias", "NIT", "Nombre del Cliente"});
                 LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
                 break;
             case 1:
                 reporte.calcularVentasPorSucursal();
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Ventas Totales", "Sucursal"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Ventas Totales", "Sucursal"});
                 LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
 
                 break;
             case 2:
                 reporte.calcularIngresosPorSucursal();
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Ingresos Totales", "Sucursal"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Ingresos Totales", "Sucursal"});
                 LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
 
                 break;
             case 3:
                 reporte.contarEmpleadosVentas();
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Ventas Totales", "Codigo Empleado", "Nombre Empleado", "Sucursal"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Ventas Totales", "Codigo Empleado", "Nombre Empleado", "Sucursal"});
                 LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
                 break;
             case 4:
                 reporte.sumarEmpleadosIngresos();
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Ingresos Totales", "Codigo Empleado", "Nombre Empleado", "Sucursal"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Ingresos Totales", "Codigo Empleado", "Nombre Empleado", "Sucursal"});
                 LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
                 break;
             case 5:
                 reporte.buscarProductosVendidos();
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Codigo del Prodcuto", "Descripcion", "Cantidad Vendida"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Codigo del Prodcuto", "Descripcion", "Cantidad Vendida"});
                 LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
                 break;
             case 6:
                 reporte.contarProductosIngresos();
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Codigo del Prodcuto", "Descripcion", "Total Ingresos"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Codigo del Prodcuto", "Descripcion", "Total Ingresos"});
                 LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
                 break;
             case 7:
                 this.jComboBoxSucursal.setVisible(true);
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Codigo del Prodcuto", "Descripcion", "Cantidad Vendida"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Codigo del Prodcuto", "Descripcion", "Cantidad Vendida"});
                 break;
             case 8:
                 this.jComboBoxSucursal.setVisible(true);
-                LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Codigo del Prodcuto", "Descripcion", "Ingresos Totales"});
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Codigo del Prodcuto", "Descripcion", "Ingresos Totales"});
                 break;
         }
     }//GEN-LAST:event_jListReportesValueChanged
 
     private void jComboBoxSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSucursalActionPerformed
-        int sucursal = Conversor.determinarSucursal(String.valueOf(this.jComboBoxSucursal.getSelectedItem()));
-        if (this.jListReportes.getSelectedIndex() == 7) {
-            LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Codigo del Prodcuto", "Descripcion", "Cantidad Vendida"});
-            reporte.buscarTop5Productos(sucursal);
-            LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
-        } else if (this.jListReportes.getSelectedIndex() == 8) {
-            LlenadorTabla.cambiarEncabezado(jTable1, new String[] {"No.", "Codigo del Prodcuto", "Descripcion", "Ingresos Totales"});
-            reporte.buscarTop5ProductosIng(sucursal);
-            LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
+        String sucursalelegida = String.valueOf(this.jComboBoxSucursal.getSelectedItem()); //Obtiene el iten en forma de string
+        if (!sucursalelegida.trim().equals("Elija una sucursal...")) { //Valida que no sea la opcion por defecto
+            int sucursal = Conversor.determinarSucursal(sucursalelegida); //Obtiene el id de la sucursal
+            if (this.jListReportes.getSelectedIndex() == 7) { //Crea los respectivos reportes para la opcion 7
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Codigo del Prodcuto", "Descripcion", "Cantidad Vendida"});
+                reporte.buscarTop5Productos(sucursal);
+                LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
+            } else if (this.jListReportes.getSelectedIndex() == 8) { //Crea los respectivos reportes para la opcion 8
+                LlenadorTabla.cambiarEncabezado(jTable1, new String[]{"No.", "Codigo del Prodcuto", "Descripcion", "Ingresos Totales"});
+                reporte.buscarTop5ProductosIng(sucursal);
+                LlenadorTabla.llenarTabla(jTable1, reporte.getLb());
+            }
         }
     }//GEN-LAST:event_jComboBoxSucursalActionPerformed
 
-
+    /**
+     * Variable declaradas por netbeans
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBoxSucursal;
     private javax.swing.JLabel jLabel1;

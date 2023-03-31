@@ -13,13 +13,19 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase que maneja el penel 2 de administracion
  * @author lroda
  */
 public class Admin_Pnl2 extends javax.swing.JPanel {
 
+    /**
+     * Atributos
+     */
     private Empleado emp;
 
+    /**
+     * Constructor
+     */
     public Admin_Pnl2() {
         initComponents();
         emp = new Empleado();

@@ -21,12 +21,14 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase encargada de manejar el panel 1 de ventas
  * @author lroda
  */
 public class Venta_Pnl1 extends javax.swing.JPanel {
 
-    /*Atributos*/
+    /**
+     * Atributos
+     */
     private Cliente cliente;
     private Venta venta;
     private Producto product;
@@ -34,6 +36,9 @@ public class Venta_Pnl1 extends javax.swing.JPanel {
     private ShowMsg msg;
     private JFrame frame;
 
+    /**
+     * Constructor
+     */
     public Venta_Pnl1() {
         initComponents();
         this.setSize(980, 650);

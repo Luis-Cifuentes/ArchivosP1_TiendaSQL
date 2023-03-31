@@ -13,15 +13,21 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Clase encargada de manejar la UI de login
  * @author lroda
  */
 public class Login extends javax.swing.JFrame {
 
+    /**
+     * Atributos
+     */
     private final Empleado emp;
     private int moveX;
     private int moveY;
 
+    /**
+     * Constructor
+     */
     public Login() {
         initComponents();
         this.setResizable(false);
@@ -343,21 +349,22 @@ public class Login extends javax.swing.JFrame {
                 switch (this.emp.getRol()) {
                     case 1:
                         VentaR vnd = new VentaR();
-                        this.setVisible(false);
+                        
                         break;
                     case 2:
                         Inventario inv = new Inventario();
-                        this.setVisible(false);
+                        
                         break;
                     case 3:
                         Bodega bodega = new Bodega();
-                        this.setVisible(false);
+                        
                         break;
                     case 4:
                         Administracion admin = new Administracion();
-                        this.setVisible(false);
+                        
                         break;
                 }
+                this.dispose();
             } else {
                 this.jLabelMsgError.setText("ID o contraseña invalidos");
             }

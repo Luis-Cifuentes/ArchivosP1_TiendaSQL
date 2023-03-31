@@ -5,7 +5,7 @@ import com.nrodas.archivosp1.conexion.Conexion;
 import com.nrodas.archivosp1.interfazgrafica.Login;
 
 /**
- * Hello world!
+ * Clase Principal de la Aplicacion
  *
  */
 public class App 
@@ -13,7 +13,7 @@ public class App
 
     /**
      *
-     * @param args
+     * @param args donde args son las lineas de comandos
      */
     public static void main( String[] args ) {
         Conexion conexion = new Conexion(); //Se instancia una nueva conexion

@@ -10,14 +10,20 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Clase que maneja la UI de Bodega
  * @author lroda
  */
 public class Bodega extends javax.swing.JFrame {
 
+    /**
+     * Atributos
+     */
     private int moveX;
     private int moveY;
 
+    /**
+     * Constructor
+     */
     public Bodega() {
         initComponents();
         this.setResizable(false);
@@ -435,6 +441,9 @@ public class Bodega extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabelBtnCSMouseClicked
 
+    /**
+     * Metodo que repinta el panel
+     */
     public void repintarModPdt() {
         Bod_Pnl2 panel = new Bod_Pnl2();
         this.jPanelCambiante.removeAll();

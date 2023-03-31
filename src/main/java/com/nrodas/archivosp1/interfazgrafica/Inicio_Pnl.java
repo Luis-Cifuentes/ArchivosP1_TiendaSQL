@@ -5,7 +5,7 @@
 package com.nrodas.archivosp1.interfazgrafica;
 
 /**
- *
+ * Clase encargada de presentar el panel de home
  * @author lroda
  */
 public class Inicio_Pnl extends javax.swing.JPanel {

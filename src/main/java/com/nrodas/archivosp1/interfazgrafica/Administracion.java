@@ -8,15 +8,20 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Clase que maneja la UI de administrador
  * @author lroda
  */
 public class Administracion extends javax.swing.JFrame {
 
+    /**
+     * Atributos
+     */
     int moveX;
     int moveY;
     
-    
+    /**
+     * Constructor
+     */
     public Administracion() {
         initComponents();
         this.setResizable(false);
@@ -441,6 +446,9 @@ public class Administracion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    /**
+     *
+     */
     public void repintarEmpleado() {
         Admin_Pnl2 pnl = new Admin_Pnl2();
         this.jPanelCambiante.removeAll();

@@ -9,14 +9,20 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * Clase encargada de manejar la UI de inventario
  * @author lroda
  */
 public class Inventario extends javax.swing.JFrame {
 
+    /**
+     * Atributos
+     */
     private int moveX;
     private int moveY;
 
+    /**
+     * Constructor
+     */
     public Inventario() {
         initComponents();
         this.setResizable(false);
@@ -375,6 +381,10 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelBtnCSMouseClicked
 
     /*Metodo que repinta la pestaña*/
+
+    /**
+     * Metodo que repinta 
+     */
     public void repintarPest() {
         Inv_Pnl1 pnl = new Inv_Pnl1();
         this.jPanelCambiante.removeAll();
@@ -383,9 +393,7 @@ public class Inventario extends javax.swing.JFrame {
         this.jPanelCambiante.revalidate();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelBtnCS;
